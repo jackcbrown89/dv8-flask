@@ -17,6 +17,8 @@ def my_graph():
     if request.method == "POST":
         print request.form['text']
 
+    query_string = request.query_string    
+    print query_string
     return render_template('rip.html')
 
 @app.route('/', methods=['POST'])
