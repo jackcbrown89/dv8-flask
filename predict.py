@@ -47,7 +47,8 @@ with tf.Graph().as_default():
     optimizer = tf.train.AdamOptimizer().minimize(loss)
     yT, _ = lstm_cell(tf.reshape(x[:, i], [5, 1]), output, state)
 
-def predict(stock, data):
+def predicttom(stock, data):
+    print data
     with tf.Session() as sess:
         tf.train.Saver().restore(sess, 'models' + stock + '_model.ckpt')
         prediction = sess.run([yT], feed_dict={x: data})
