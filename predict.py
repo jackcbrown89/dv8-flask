@@ -1,4 +1,5 @@
 import tensorflow as tf
+import process
 
 num_nodes = 5
 days = 30
@@ -49,9 +50,15 @@ with tf.Graph().as_default():
 
 def predicttom(stock, data):
     print data
+    if data is None:
+       return
+    if stock is None:
+        return
     with tf.Session() as sess:
         tf.train.Saver().restore(sess, 'models' + stock + '_model.ckpt')
         prediction = sess.run([yT], feed_dict={x: data})
         prediction = prediction[0][:, 0]
         print(prediction)
         return prediction
+
+

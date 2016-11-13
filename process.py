@@ -60,14 +60,15 @@ def compileArray(ticker):
             low = soup.low.string
             close = soup.last.string
             volume = soup.volume.string
-            params.append((close, volume, open, high, low))
+            #params.append((close, volume, open, high, low))
             dailyval.append(close)
             print dailyval
         else:
             dailyval.append(dailyval[i-1])
-            params.append(params[i-1])
+            print dailyval
+            #params.append(params[i-1])
     #def collectInfo(ticker):
-    return dailyval, params
+    return dailyval
 
 
 
