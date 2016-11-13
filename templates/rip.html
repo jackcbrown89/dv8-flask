@@ -42,10 +42,9 @@
         <script>
             var chartData = generateChartData();
             function generateChartData() {
-
-            var sampleArray = [5, 1, 2, 3, 7, 8, 3, 6, 6, 4, 7, 5, 3, 5, 6, 7, 8.6, 5.4,4,3, 2, 4, 3,1, 4, 5, 7, 4, 1, 2,3, 4]
+                var sampleArray = {{ grapharr }};
               var chartData = [];
-              var firstDate = new Date( 2018, 2, -4 );
+              var firstDate = new Date( 2016, 10, 12 );
               firstDate.setDate( firstDate.getDate() - 500 );
               firstDate.setHours( 0, 0, 0, 0 );
 
@@ -170,7 +169,7 @@ var chart = AmCharts.makeChart( "chartdiv", {
                     <div class="device-container">
                         <div class ="screen">
                         <div class="jumbotron" style="background-color: #fff">
-                        <h1 style="color: black">Sentiment Score: <strong style="color: #1c7b5c;">9.5</strong></h1>
+                        <h1 style="color: black">Sentiment Score: <strong style="color: #1c7b5c;">{{ sentVal }}</strong></h1>
                         </div>
                         <div class="jumbotron" style="background-color: #fff">
                         <h1 style="color: black">Overall dv8 Value: <strong style="color: #218f6b;">6.4</strong></h1>
@@ -213,7 +212,7 @@ var chart = AmCharts.makeChart( "chartdiv", {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
     <!-- Theme JavaScript -->
-    <script src="js/new-age.min.js"></script>
+    <script src="https://raw.githubusercontent.com/BlackrockDigital/startbootstrap-new-age/master/js/new-age.min.js"></script>
 
 </body>
 

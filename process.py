@@ -8,10 +8,10 @@ from bs4 import BeautifulSoup
 
 #declare constants
 url = 'http://ws.nasdaqdod.com/v1/NASDAQAnalytics.asmx/GetSummarizedTrades'
-params = []
+
 
 def compileArray(ticker):
-
+    params = []
     dayZero = datetime.datetime.now() - timedelta(2)
     dayZero = dayZero.strftime('%m/%d/%Y 00:00:00.000')
     #print time.strftime('%m/%d/%Y %H:%M:%S')
@@ -26,7 +26,7 @@ def compileArray(ticker):
 
         #print thatDay.isoformat()
         values = {'_Token': 'BC2B181CF93B441D8C6342120EB0C971',
-                      'Symbols': 'AAPL',
+                      'Symbols': ticker,
                       'StartDateTime': thatDay,
                       'EndDateTime': nextDay, #time.strftime('%m/%d/%Y %H:%M:%S.001'),
                       'MarketCenters': '',
@@ -44,7 +44,7 @@ def compileArray(ticker):
             print(e.code)
             print(e.read())
 
-        print thatDay
+        #print thatDay
 
         day = thatDay
 
@@ -59,11 +59,12 @@ def compileArray(ticker):
             low = soup.low.string
             close = soup.last.string
             volume = soup.volume.string
-            params = (i, open, high, low, close, volume)
-            print params
+            params.append(close)
+            #print params
+        else:
+            params.append(params[i-1])
+        print params
     #def collectInfo(ticker):
-
-    print params
-
+    return params
 
 

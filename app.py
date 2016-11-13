@@ -1,9 +1,14 @@
 from flask import Flask, request
+from flask import jsonify
 from flask import render_template
+import sentanalysis
+import process
+import os
 
 app = Flask(__name__)
 
 app.config['DEBUG'] = True
+grapharr = []
 
 @app.route('/')
 def my_form():
@@ -12,21 +17,21 @@ def my_form():
 
     return render_template('landing.html')
 
-@app.route('/graph')
+
+@app.route('/graph', methods=['POST', 'GET'])
 def my_graph():
-    if request.method == "POST":
-        print request.form['text']
+    #print os.getcwd()
+    print request.form['text']
+    textInput = request.form['text']
+    sentVal = sentanalysis.getScore(textInput)
+    sentVal = (sentVal+100.00)/20.00
+    grapharr = process.compileArray(textInput)
+    grapharr = [float(x) for x in grapharr]
+    print grapharr
 
-    query_string = request.query_string    
-    print query_string
-    return render_template('rip.html')
+    print sentVal
+    return render_template('rip.html', sentVal=sentVal, grapharr=grapharr)
 
-@app.route('/', methods=['POST'])
-def my_form_post():
-
-    text = request.form['text']
-    processed_text = text.upper()
-    return processed_text
 
 if __name__ == "__main__":
     app.run()
