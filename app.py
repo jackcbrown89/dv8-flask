@@ -35,7 +35,7 @@ def my_graph():
     # predChange = predict.predicttom(textInput, params)
     # predChange *= 100
     # print predChange
-    dvval = sentVal+(sentVal/6.3)
+    dvval = int(sentVal+(sentVal/6.3))
     return render_template('rip.html', sentVal=sentVal, grapharr=grapharr, dvval=dvval)
 
 
