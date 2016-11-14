@@ -62,13 +62,17 @@ def compileArray(ticker):
             volume = soup.volume.string
             #params.append((close, volume, open, high, low))
             dailyval.append(close)
-            print dailyval
+
         else:
-            dailyval.append(dailyval[i-1])
             print dailyval
-            #params.append(params[i-1])
+            # print '\n'
+            # print i
+            # print '\n'
+            if dailyval == []:
+                dailyval.append(0)
+
+            else:
+                dailyval.append(dailyval[i-1])
+                print dailyval            #params.append(params[i-1])
     #def collectInfo(ticker):
     return dailyval
-
-
-
