@@ -1,5 +1,6 @@
 from py_bing_search import PyBingNewsSearch
 import codecs
+import pprint
 
 def getScore(search_term):
     bing_news = PyBingNewsSearch('/kTKVdRbZwkXtIWdbGVGpOO1rm8s8GSA9rypv4T1+hA', search_term)
@@ -17,6 +18,7 @@ def getScore(search_term):
                 sresult = result.description
                 if line in sresult:
                     if score < 100:
+                        #print result.url
                         score += 1
                         #print score
                         #print line
@@ -36,5 +38,5 @@ def getScore(search_term):
                         score -= 1
                         #print score
                         #print line
+    print score
     return score
-#getScore('')

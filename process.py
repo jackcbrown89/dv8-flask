@@ -1,7 +1,5 @@
 import numpy, time, re, urllib, urllib2, xml.etree.cElementTree as ElementTree
 import datetime
-import pprint
-import dateutil.parser
 from datetime import tzinfo, timedelta, date
 #day (top to bottom = today to 1 month ago), open, high, low, close, volume
 from bs4 import BeautifulSoup
@@ -25,11 +23,12 @@ def compileArray(ticker):
         thatDay = thatDay.date()
         nextDay = nextDay.date()
 
+        print thatDay
         #print thatDay.isoformat()
-        values = {'_Token': 'BC2B181CF93B441D8C6342120EB0C971',
+        values = {'_Token': 'BCBCB14207A44BCA83F27AAC98ACCB00',
                       'Symbols': ticker,
-                      'StartDateTime': thatDay,
-                      'EndDateTime': nextDay, #time.strftime('%m/%d/%Y %H:%M:%S.001'),
+                      'StartDateTime': '%s 9;30;00' % thatDay,
+                      'EndDateTime': '%s 16;0;0' % nextDay, #time.strftime('%m/%d/%Y %H:%M:%S.001'),
                       'MarketCenters': '',
                       'TradePrecision': 'Hour',
                       'TradePeriod': '30'}
